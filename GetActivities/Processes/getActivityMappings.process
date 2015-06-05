@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pd:ProcessDefinition xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:BW="java://com.tibco.pe.core.JavaCustomXPATHFunctions" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:ns1="http://www.tibco.com/pe/EngineTypes" xmlns:ns="http://www.tibco.com/pe/WriteToLogActivitySchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tib="http://www.tibco.com/bw/xslt/custom-functions" xmlns:pfx3="http://www.tibco.com/schemas/EventReference/EventReference/Resources/Processes/tool/Schema/Schema.xsd" xmlns:pfx2="http://www.tibco.com/schemas/7amadaawy/process/Schema.xsd" xmlns:pfx="com/tibco/pe/commands">
+    <xsd:import namespace="http://www.tibco.com/schemas/7amadaawy/process/Schema.xsd" schemaLocation="/Schema/ActivitiesSchema.xsd"/>
+    <pd:name>Processes/getActivityMappings.process</pd:name>
+    <pd:startName>Start</pd:startName>
+    <pd:startType>
+        <xsd:element name="root">
+            <xsd:complexType>
+                <xsd:sequence>
+                    <xsd:element name="processName" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:element>
+    </pd:startType>
+    <pd:startX>67</pd:startX>
+    <pd:startY>55</pd:startY>
+    <pd:returnBindings>
+        <pfx2:root>
+            <xsl:for-each select="$Parse-activities/root/activity[./*[local-name()='name' and text()!='getActivityMappings'] and ./*[local-name()='className' and text()='com.tibco.pe.core.CallProcessActivity']]">
+                <pfx2:activity>
+                    <pfx2:name>
+                        <xsl:value-of select="./*[local-name()='name']"/>
+                    </pfx2:name>
+                    <pfx2:className>
+                        <xsl:value-of select="./*[local-name()='className']"/>
+                    </pfx2:className>
+                    <pfx2:description>
+                        <xsl:value-of select="./*[local-name()='description']"/>
+                    </pfx2:description>
+                    <pfx2:inputBinds>
+                        <xsl:value-of select="tib:render-xml( current()/*[local-name()='inputBinds']/*)"/>
+                    </pfx2:inputBinds>
+                    <pfx2:outputSlotName>
+                        <xsl:value-of select="./*[local-name()='outputSlotName']"/>
+                    </pfx2:outputSlotName>
+                    <pfx2:joinToggle>
+                        <xsl:value-of select="./*[local-name()='joinToggle']"/>
+                    </pfx2:joinToggle>
+                    <pfx2:joinCondition>
+                        <xsl:value-of select="./*[local-name()='joinCondition']"/>
+                    </pfx2:joinCondition>
+                    <pfx2:handler>
+                        <xsl:value-of select="./*[local-name()='handler']"/>
+                    </pfx2:handler>
+                    <pfx2:retryLimit>
+                        <xsl:value-of select="./*[local-name()='retryLimit']"/>
+                    </pfx2:retryLimit>
+                    <pfx2:suspendOnError>
+                        <xsl:value-of select="./*[local-name()='suspendOnError']"/>
+                    </pfx2:suspendOnError>
+                    <pfx2:uri>
+                        <xsl:value-of select="./*[local-name()='uri']"/>
+                    </pfx2:uri>
+                    <pfx2:x>
+                        <xsl:value-of select="./*[local-name()='x']"/>
+                    </pfx2:x>
+                    <pfx2:y>
+                        <xsl:value-of select="./*[local-name()='y']"/>
+                    </pfx2:y>
+                    <pfx2:resourceType>
+                        <xsl:value-of select="./*[local-name()='resourceType']"/>
+                    </pfx2:resourceType>
+                    <pfx2:dataModelClassName>
+                        <xsl:value-of select="./*[local-name()='dataModelClassName']"/>
+                    </pfx2:dataModelClassName>
+                    <pfx2:iconImage>
+                        <xsl:value-of select="''"/>
+                    </pfx2:iconImage>
+                </pfx2:activity>
+            </xsl:for-each>
+        </pfx2:root>
+    </pd:returnBindings>
+    <pd:endName>End</pd:endName>
+    <pd:endType ref="pfx2:root"/>
+    <pd:endX>636</pd:endX>
+    <pd:endY>55</pd:endY>
+    <pd:errorSchemas/>
+    <pd:processVariables/>
+    <pd:targetNamespace>http://xmlns.example.com/1401972387042</pd:targetNamespace>
+    <pd:activity name="Java Code">
+        <pd:type>com.tibco.plugin.java.JavaActivity</pd:type>
+        <pd:resourceType>ae.javapalette.javaActivity</pd:resourceType>
+        <pd:x>249</pd:x>
+        <pd:y>55</pd:y>
+        <config>
+            <fileName>getActivityMappingsJavaCode</fileName>
+            <packageName>Processes.getActivityMappings</packageName>
+            <fullsource>package Processes.getActivityMappings;
+import java.util.*;
+import java.io.*;
+import com.tibco.pe.core.*;
+import com.tibco.pe.model.*;
+import java.lang.*;
+import java.lang.reflect.Field;
+import java.io.IOException;
+import java.io.Serializable;
+
+public class getActivityMappingsJavaCode{
+/****** START SET/GET METHOD, DO NOT MODIFY *****/
+	protected String process = "";
+	protected String outMe = "";
+	protected Object[] activities = null;
+	public String getprocess() {
+		return process;
+	}
+	public void setprocess(String val) {
+		process = val;
+	}
+	public String getoutMe() {
+		return outMe;
+	}
+	public void setoutMe(String val) {
+		outMe = val;
+	}
+	public Object[] getactivities() {
+		return activities;
+	}
+	public void setactivities(Object[] val) {
+		activities = val;
+	}
+/****** END SET/GET METHOD, DO NOT MODIFY *****/
+	public getActivityMappingsJavaCode() {
+	}
+public static Map&lt;String, Object&gt; getObjectNameValuePairs(Object obj)
+			throws IllegalArgumentException, IllegalAccessException {
+		Map&lt;String, Object&gt; list = new HashMap&lt;String, Object&gt;();
+		for (Field field : obj.getClass().getDeclaredFields()) {
+			field.setAccessible(true); // if you want to modify private fields
+
+			if (field.get(obj) != null
+					&amp;&amp; field.get(obj).toString().contains(field.get(obj).getClass().getSimpleName()+"@")) {
+				list.put(field.getName(),
+						getObjectNameValuePairs(field.get(obj)));
+			} else {
+
+				list.put(field.getName(), field.get(obj) == null ? null : field
+						.get(obj).toString());
+
+			}
+		}
+		return list;
+	}
+
+public static void copy(Object srcObj, Object dstObj)
+			throws IllegalArgumentException, IllegalAccessException {
+
+		for (Field srcField : srcObj.getClass().getDeclaredFields()) {
+			srcField.setAccessible(true); // if you want to modify private
+											// fields
+
+			try {
+				System.out.println("Field Name =  " + srcField.getName());
+				Field dstField = dstObj.getClass().getDeclaredField(
+						srcField.getName().trim());
+				dstField.setAccessible(true);
+if (srcField.get(srcObj) != null &amp;&amp; (srcField.get(srcObj) instanceof String || ! isWrapperType(srcField.get(srcObj).getClass())))
+ {
+					dstField.set(dstObj, srcField.get(srcObj) == null ? null
+							: srcField.get(srcObj).toString());
+				} else {
+					dstField.set(dstObj, srcField.get(srcObj) == null ? null
+							: srcField.get(srcObj));
+
+				}
+			} catch (NoSuchFieldException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+	}
+
+
+	public void invoke() throws Exception {
+
+/* Available Variables: DO NOT MODIFY
+	In  : String process
+	Out : String outMe
+	Out : Object[] activities
+* Available Variables: DO NOT MODIFY *****/
+
+
+
+ this.outMe = "&lt;root&gt;";
+
+     //  this.outMe += Arrays.toString(((ProcessModel)obj).getActivities());
+    //  ActivityDefinition[] activities= (((ProcessModel)obj).getActivities());
+
+ ActivityDefinition[] activities=  Engine.getModel(this.getprocess()).getActivities();
+//meen
+      Activity[] sActivities = new Activity[activities.length];
+      this.outMe += "&lt;processmodel&gt;" + Engine.getModel(this.getprocess()).getName() +  "&lt;/processmodel&gt;";
+      int i = 0;
+       for (ActivityDefinition activity : activities) {
+
+      Activity sActivity = new Activity();
+     copy(activity ,sActivity);
+     this.outMe += xml(sActivity);
+      sActivities[i++] = sActivity;
+      }
+            this.setactivities(sActivities);
+    
+ this.outMe += "&lt;/root&gt;";
+ this.outMe = this.outMe.replace("&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;", "");
+
+//this.outMe = getObjectNameValuePairs(Engine.getModels().elementAt(0)).toString();
+
+}
+
+
+
+class Activity implements Serializable {
+	  protected String name = null;
+
+	  protected String className = null;
+
+	  protected String description = null;
+
+	  protected String inputBinds = null;
+	  protected String outputSlotName = null;
+
+	  protected String joinToggle = null;
+	  protected String joinCondition = null;
+
+
+
+	  protected int retryLimit = 0;
+
+	  protected String uri = null;
+	  protected int x;
+	  protected int y;
+	  protected String resourceType;
+	  private String dataModelClassName;
+
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getClassName() {
+		return className;
+	}
+	public void setClassName(String className) {
+		this.className = className;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getInputBinds() {
+		return inputBinds;
+	}
+	public void setInputBinds(String inputBinds) {
+		this.inputBinds = inputBinds;
+	}
+	public String getOutputSlotName() {
+		return outputSlotName;
+	}
+	public void setOutputSlotName(String outputSlotName) {
+		this.outputSlotName = outputSlotName;
+	}
+	public String getJoinToggle() {
+		return joinToggle;
+	}
+	public void setJoinToggle(String joinToggle) {
+		this.joinToggle = joinToggle;
+	}
+	public String getJoinCondition() {
+		return joinCondition;
+	}
+	public void setJoinCondition(String joinCondition) {
+		this.joinCondition = joinCondition;
+	}
+
+	public int getRetryLimit() {
+		return retryLimit;
+	}
+	public void setRetryLimit(int retryLimit) {
+		this.retryLimit = retryLimit;
+	}
+
+	public String getUri() {
+		return uri;
+	}
+	public void setUri(String uri) {
+		this.uri = uri;
+	}
+	public int getX() {
+		return x;
+	}
+	public void setX(int x) {
+		this.x = x;
+	}
+	public int getY() {
+		return y;
+	}
+	public void setY(int y) {
+		this.y = y;
+	}
+	public String getResourceType() {
+		return resourceType;
+	}
+	public void setResourceType(String resourceType) {
+		this.resourceType = resourceType;
+	}
+	public String getDataModelClassName() {
+		return dataModelClassName;
+	}
+	public void setDataModelClassName(String dataModelClassName) {
+		this.dataModelClassName = dataModelClassName;
+	}
+
+
+	  
+}
+
+
+ public static boolean isWrapperType(Class&lt;?&gt; clazz)
+    {
+        return getWrapperTypes().contains(clazz);
+    }
+
+    private static Set&lt;Class&lt;?&gt;&gt; getWrapperTypes()
+    {
+        Set&lt;Class&lt;?&gt;&gt; ret = new HashSet&lt;Class&lt;?&gt;&gt;();
+        ret.add(Boolean.class);
+        ret.add(Character.class);
+        ret.add(Byte.class);
+        ret.add(Short.class);
+        ret.add(Integer.class);
+        ret.add(Long.class);
+        ret.add(Float.class);
+        ret.add(Double.class);
+        ret.add(Void.class);
+        return ret;
+    }
+
+
+public static String xml(Object srcObj)
+			throws IllegalArgumentException, IllegalAccessException {
+
+		String xml = "&lt;activity&gt;";
+		for (Field srcField : srcObj.getClass().getDeclaredFields()) {
+			srcField.setAccessible(true); 
+                        if(srcField.getName().contains("this$")) continue;
+			xml+="&lt;"+srcField.getName()+ "&gt;" +( srcField.get(srcObj) == null ? null: srcField.get(srcObj).toString()) + "&lt;/"+srcField.getName()+ "&gt;";
+		}
+		return xml+"&lt;/activity&gt;";
+	}
+}
+</fullsource>
+            <outputData>
+                <row>
+                    <fieldName>outMe</fieldName>
+                    <fieldType>string</fieldType>
+                    <fieldRequired>optional</fieldRequired>
+                </row>
+                <row>
+                    <fieldName>activities</fieldName>
+                    <fieldType>ObjectReference</fieldType>
+                    <fieldRequired>repeating</fieldRequired>
+                </row>
+            </outputData>
+            <inputData>
+                <row>
+                    <fieldName>process</fieldName>
+                    <fieldType>string</fieldType>
+                    <fieldRequired>optional</fieldRequired>
+                </row>
+            </inputData>
+            <byteCode>
+                <class>
+                    <name>getActivityMappingsJavaCode</name>
+                    <byteCode>yv66vgAAADMA+AkARgB/CQBGAIAJAEYAgQoARwCCCACDBwCECgAGAIIKAEcAhQoAhgCHCgCIAIkKAIgAigoARwCLBwCMCgANAIIKAIYAjQoADQCOCACPCgANAIsKABwAkAoAiACRCgBGAJILAJMAlAkAlQCWCACXCgCYAJkKABwAmgoAhgCbBwCcCgBGAJ0KAIgAngcAnwoAHwCgBwChCgAhAKAIAKIKAEYAowoApAClCgCmAKcHAKgIAKkKAKYAkQgAqgoAJwCrCgBGAKwKAEYArQoARgCuCACvCACwCgAcALEKAEYAsgsAswC0BwC1CgA0AIIHALYLALMAtwcAuAcAuQcAugcAuwcAvAcAvQcAvgcAvwgAwAgAwQgAwggAwwgAxAgAxQcAxgcAxwEACEFjdGl2aXR5AQAMSW5uZXJDbGFzc2VzAQAHcHJvY2VzcwEAEkxqYXZhL2xhbmcvU3RyaW5nOwEABW91dE1lAQAKYWN0aXZpdGllcwEAE1tMamF2YS9sYW5nL09iamVjdDsBAApnZXRwcm9jZXNzAQAUKClMamF2YS9sYW5nL1N0cmluZzsBAARDb2RlAQAPTGluZU51bWJlclRhYmxlAQAKc2V0cHJvY2VzcwEAFShMamF2YS9sYW5nL1N0cmluZzspVgEACGdldG91dE1lAQAIc2V0b3V0TWUBAA1nZXRhY3Rpdml0aWVzAQAVKClbTGphdmEvbGFuZy9PYmplY3Q7AQANc2V0YWN0aXZpdGllcwEAFihbTGphdmEvbGFuZy9PYmplY3Q7KVYBAAY8aW5pdD4BAAMoKVYBABdnZXRPYmplY3ROYW1lVmFsdWVQYWlycwEAIyhMamF2YS9sYW5nL09iamVjdDspTGphdmEvdXRpbC9NYXA7AQANU3RhY2tNYXBUYWJsZQcAxwcAyAcAyQcAygcAnAEACkV4Y2VwdGlvbnMHAMsHAMwBAAlTaWduYXR1cmUBAEkoTGphdmEvbGFuZy9PYmplY3Q7KUxqYXZhL3V0aWwvTWFwPExqYXZhL2xhbmcvU3RyaW5nO0xqYXZhL2xhbmcvT2JqZWN0Oz47AQAEY29weQEAJyhMamF2YS9sYW5nL09iamVjdDtMamF2YS9sYW5nL09iamVjdDspVgcAnwcAoQEABmludm9rZQcAxgcAzQcAzgcAzwEADWlzV3JhcHBlclR5cGUBABQoTGphdmEvbGFuZy9DbGFzczspWgEAFyhMamF2YS9sYW5nL0NsYXNzPCo+OylaAQAPZ2V0V3JhcHBlclR5cGVzAQARKClMamF2YS91dGlsL1NldDsBACcoKUxqYXZhL3V0aWwvU2V0PExqYXZhL2xhbmcvQ2xhc3M8Kj47PjsBAAN4bWwBACYoTGphdmEvbGFuZy9PYmplY3Q7KUxqYXZhL2xhbmcvU3RyaW5nOwcAnAcAjAEAClNvdXJjZUZpbGUBACBnZXRBY3Rpdml0eU1hcHBpbmdzSmF2YUNvZGUuamF2YQwASgBLDABMAEsMAE0ATgwAWwBcAQAAAQARamF2YS91dGlsL0hhc2hNYXAMANAA0QcA0gwA0wDUBwDKDADVANYMANcA2AwA2QBQAQAXamF2YS9sYW5nL1N0cmluZ0J1aWxkZXIMANoAUAwA2wDcAQABQAwA3QDeDADfAFAMAF0AXgcAyAwA4ADhBwDiDADjAOQBAA5GaWVsZCBOYW1lID0gIAcA5QwA5gBUDADnAFAMAOgA6QEAEGphdmEvbGFuZy9TdHJpbmcMAHMAdAwA6gBrAQAeamF2YS9sYW5nL05vU3VjaEZpZWxkRXhjZXB0aW9uDADrAFwBABtqYXZhL2xhbmcvU2VjdXJpdHlFeGNlcHRpb24BAAY8cm9vdD4MAE8AUAcA7AwA7QDuBwDvDADwAPEBAEJQcm9jZXNzZXMvZ2V0QWN0aXZpdHlNYXBwaW5ncy9nZXRBY3Rpdml0eU1hcHBpbmdzSmF2YUNvZGUkQWN0aXZpdHkBAA48cHJvY2Vzc21vZGVsPgEADzwvcHJvY2Vzc21vZGVsPgwAWwDyDABqAGsMAHkAegwAWQBaAQAHPC9yb290PgEAJjw/eG1sIHZlcnNpb249IjEuMCIgZW5jb2Rpbmc9IlVURi04Ij8+DADzAPQMAHYAdwcA9QwA3QD2AQARamF2YS91dGlsL0hhc2hTZXQBABFqYXZhL2xhbmcvQm9vbGVhbgwA9wD2AQATamF2YS9sYW5nL0NoYXJhY3RlcgEADmphdmEvbGFuZy9CeXRlAQAPamF2YS9sYW5nL1Nob3J0AQARamF2YS9sYW5nL0ludGVnZXIBAA5qYXZhL2xhbmcvTG9uZwEAD2phdmEvbGFuZy9GbG9hdAEAEGphdmEvbGFuZy9Eb3VibGUBAA5qYXZhL2xhbmcvVm9pZAEACjxhY3Rpdml0eT4BAAV0aGlzJAEAATwBAAE+AQACPC8BAAs8L2FjdGl2aXR5PgEAOVByb2Nlc3Nlcy9nZXRBY3Rpdml0eU1hcHBpbmdzL2dldEFjdGl2aXR5TWFwcGluZ3NKYXZhQ29kZQEAEGphdmEvbGFuZy9PYmplY3QBAA1qYXZhL3V0aWwvTWFwAQAaW0xqYXZhL2xhbmcvcmVmbGVjdC9GaWVsZDsBABdqYXZhL2xhbmcvcmVmbGVjdC9GaWVsZAEAImphdmEvbGFuZy9JbGxlZ2FsQXJndW1lbnRFeGNlcHRpb24BACBqYXZhL2xhbmcvSWxsZWdhbEFjY2Vzc0V4Y2VwdGlvbgEAKFtMY29tL3RpYmNvL3BlL21vZGVsL0FjdGl2aXR5RGVmaW5pdGlvbjsBAEVbTFByb2Nlc3Nlcy9nZXRBY3Rpdml0eU1hcHBpbmdzL2dldEFjdGl2aXR5TWFwcGluZ3NKYXZhQ29kZSRBY3Rpdml0eTsBABNqYXZhL2xhbmcvRXhjZXB0aW9uAQAIZ2V0Q2xhc3MBABMoKUxqYXZhL2xhbmcvQ2xhc3M7AQAPamF2YS9sYW5nL0NsYXNzAQARZ2V0RGVjbGFyZWRGaWVsZHMBABwoKVtMamF2YS9sYW5nL3JlZmxlY3QvRmllbGQ7AQANc2V0QWNjZXNzaWJsZQEABChaKVYBAANnZXQBACYoTGphdmEvbGFuZy9PYmplY3Q7KUxqYXZhL2xhbmcvT2JqZWN0OwEACHRvU3RyaW5nAQANZ2V0U2ltcGxlTmFtZQEABmFwcGVuZAEALShMamF2YS9sYW5nL1N0cmluZzspTGphdmEvbGFuZy9TdHJpbmdCdWlsZGVyOwEACGNvbnRhaW5zAQAbKExqYXZhL2xhbmcvQ2hhclNlcXVlbmNlOylaAQAHZ2V0TmFtZQEAA3B1dAEAOChMamF2YS9sYW5nL09iamVjdDtMamF2YS9sYW5nL09iamVjdDspTGphdmEvbGFuZy9PYmplY3Q7AQAQamF2YS9sYW5nL1N5c3RlbQEAA291dAEAFUxqYXZhL2lvL1ByaW50U3RyZWFtOwEAE2phdmEvaW8vUHJpbnRTdHJlYW0BAAdwcmludGxuAQAEdHJp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</byteCode>
+                </class>
+                <class>
+                    <name>getActivityMappingsJavaCode$Activity</name>
+                    <byteCode>yv66vgAAADMAXwkAEABICgARAEkJABAASgkAEABLCQAQAEwJABAATQkAEABOCQAQAE8JABAAUAkAEABRCQAQAFIJABAAUwkAEABUCQAQAFUJABAAVgcAWAcAWwcAXAEABG5hbWUBABJMamF2YS9sYW5nL1N0cmluZzsBAAljbGFzc05hbWUBAAtkZXNjcmlwdGlvbgEACmlucHV0QmluZHMBAA5vdXRwdXRTbG90TmFtZQEACmpvaW5Ub2dnbGUBAA1qb2luQ29uZGl0aW9uAQAKcmV0cnlMaW1pdAEAAUkBAAN1cmkBAAF4AQABeQEADHJlc291cmNlVHlwZQEAEmRhdGFNb2RlbENsYXNzTmFtZQEABnRoaXMkMAEAO0xQcm9jZXNzZXMvZ2V0QWN0aXZpdHlNYXBwaW5ncy9nZXRBY3Rpdml0eU1hcHBpbmdzSmF2YUNvZGU7AQAGPGluaXQ+AQA+KExQcm9jZXNzZXMvZ2V0QWN0aXZpdHlNYXBwaW5ncy9nZXRBY3Rpdml0eU1hcHBpbmdzSmF2YUNvZGU7KVYBAARDb2RlAQAPTGluZU51bWJlclRhYmxlAQAHZ2V0TmFtZQEAFCgpTGphdmEvbGFuZy9TdHJpbmc7AQAHc2V0TmFtZQEAFShMamF2YS9sYW5nL1N0cmluZzspVgEADGdldENsYXNzTmFtZQEADHNldENsYXNzTmFtZQEADmdldERlc2NyaXB0aW9uAQAOc2V0RGVzY3JpcHRpb24BAA1nZXRJbnB1dEJpbmRzAQANc2V0SW5wdXRCaW5kcwEAEWdldE91dHB1dFNsb3ROYW1lAQARc2V0T3V0cHV0U2xvdE5hbWUBAA1nZXRKb2luVG9nZ2xlAQANc2V0Sm9pblRvZ2dsZQEAEGdldEpvaW5Db25kaXRpb24BABBzZXRKb2luQ29uZGl0aW9uAQANZ2V0UmV0cnlMaW1pdAEAAygpSQEADXNldFJldHJ5TGltaXQBAAQoSSlWAQAGZ2V0VXJpAQAGc2V0VXJpAQAEZ2V0WAEABHNldFgBAARnZXRZAQAEc2V0WQEAD2dldFJlc291cmNlVHlwZQEAD3NldFJlc291cmNlVHlwZQEAFWdldERhdGFNb2RlbENsYXNzTmFtZQEAFXNldERhdGFNb2RlbENsYXNzTmFtZQEAClNvdXJjZUZpbGUBACBnZXRBY3Rpdml0eU1hcHBpbmdzSmF2YUNvZGUuamF2YQwAIgAjDAAkAF0MABMAFAwAFQAUDAAWABQMABcAFAwAGAAUDAAZABQMABoAFAwAGwAcDAAdABQMAB4AHAwAHwAcDAAgABQMACEAFAcAXgEAQlByb2Nlc3Nlcy9nZXRBY3Rpdml0eU1hcHBpbmdzL2dldEFjdGl2aXR5TWFwcGluZ3NKYXZhQ29kZSRBY3Rpdml0eQEACEFjdGl2aXR5AQAMSW5uZXJDbGFzc2VzAQAQamF2YS9sYW5nL09iamVjdAEAFGphdmEvaW8vU2VyaWFsaXphYmxlAQADKClWAQA5UHJvY2Vzc2VzL2dldEFjdGl2aXR5TWFwcGluZ3MvZ2V0QWN0aXZpdHlNYXBwaW5nc0phdmFDb2RlACAAEAARAAEAEgAOAAQAEwAUAAAABAAVABQAAAAEABYAFAAAAAQAFwAUAAAABAAYABQAAAAEABkAFAAAAAQAGgAUAAAABAAbABwAAAAEAB0AFAAAAAQAHgAcAAAABAAfABwAAAAEACAAFAAAAAIAIQAUAAAQEAAiACMAAAAbAAAAJAAlAAEAJgAAAHMAAgACAAAANyortQABKrcAAioBtQADKgG1AAQqAbUABSoBtQAGKgG1AAcqAbUACCoBtQAJKgO1AAoqAbUAC7EAAAABACcAAAAqAAoAAACAAAkAgQAOAIMAEwCFABgAhwAdAIgAIgCKACcAiwAsAI8AMQCRAAEAKAApAAEAJgAAAB0AAQABAAAABSq0AAOwAAAAAQAnAAAABgABAAAAmAABACoAKwABACYAAAAiAAIAAgAAAAYqK7UAA7EAAAABACcAAAAKAAIAAACbAAUAnAABACwAKQABACYAAAAdAAEAAQAAAAUqtAAEsAAAAAEAJwAAAAYAAQAAAJ4AAQAtACsAAQAmAAAAIgACAAIAAAAGKiu1AASxAAAAAQAnAAAACgACAAAAoQAFAKIAAQAuACkAAQAmAAAAHQABAAEAAAAFKrQABbAAAAABACcAAAAGAAEAAACkAAEALwArAAEAJgAAACIAAgACAAAABiortQAFsQAAAAEAJwAAAAoAAgAAAKcABQCoAAEAMAApAAEAJgAAAB0AAQABAAAABSq0AAawAAAAAQAnAAAABgABAAAAqgABADEAKwABACYAAAAiAAIAAgAAAAYqK7UABrEAAAABACcAAAAKAAIAAACtAAUArgABADIAKQABACYAAAAdAAEAAQAAAAUqtAAHsAAAAAEAJwAAAAYAAQAAALAAAQAzACsAAQAmAAAAIgACAAIAAAAGKiu1AAexAAAAAQAnAAAACgACAAAAswAFALQAAQA0ACkAAQAmAAAAHQABAAEAAAAFKrQACLAAAAABACcAAAAGAAEAAAC2AAEANQArAAEAJgAAACIAAgACAAAABiortQAIsQAAAAEAJwAAAAoAAgAAALkABQC6AAEANgApAAEAJgAAAB0AAQABAAAABSq0AAmwAAAAAQAnAAAABgABAAAAvAABADcAKwABACYAAAAiAAIAAgAAAAYqK7UACbEAAAABACcAAAAKAAIAAAC/AAUAwAABADgAOQABACYAAAAdAAEAAQAAAAUqtAAKrAAAAAEAJwAAAAYAAQAAAMMAAQA6ADsAAQAmAAAAIgACAAIAAAAGKhu1AAqxAAAAAQAnAAAACgACAAAAxgAFAMcAAQA8ACkAAQAmAAAAHQABAAEAAAAFKrQAC7AAAAABACcAAAAGAAEAAADKAAEAPQArAAEAJgAAACIAAgACAAAABiortQALsQAAAAEAJwAAAAoAAgAAAM0ABQDOAAEAPgA5AAEAJgAAAB0AAQABAAAABSq0AAysAAAAAQAnAAAABgABAAAA0AABAD8AOwABACYAAAAiAAIAAgAAAAYqG7UADLEAAAABACcAAAAKAAIAAADTAAUA1AABAEAAOQABACYAAAAdAAEAAQAAAAUqtAANrAAAAAEAJwAAAAYAAQAAANYAAQBBADsAAQAmAAAAIgACAAIAAAAGKhu1AA2xAAAAAQAnAAAACgACAAAA2QAFANoAAQBCACkAAQAmAAAAHQABAAEAAAAFKrQADrAAAAABACcAAAAGAAEAAADcAAEAQwArAAEAJgAAACIAAgACAAAABiortQAOsQAAAAEAJwAAAAoAAgAAAN8ABQDgAAEARAApAAEAJgAAAB0AAQABAAAABSq0AA+wAAAAAQAnAAAABgABAAAA4gABAEUAKwABACYAAAAiAAIAAgAAAAYqK7UAD7EAAAABACcAAAAKAAIAAADlAAUA5gACAEYAAAACAEcAWgAAAAoAAQAQAFcAWQAA</byteCode>
+                </class>
+            </byteCode>
+        </config>
+        <pd:inputBindings>
+            <javaCodeActivityInput>
+                <process>
+                    <xsl:value-of select="$Start/root/processName"/>
+                </process>
+            </javaCodeActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="Parse activities">
+        <pd:type>com.tibco.plugin.xml.XMLParseActivity</pd:type>
+        <pd:resourceType>ae.activities.XMLParseActivity</pd:resourceType>
+        <pd:x>430</pd:x>
+        <pd:y>55</pd:y>
+        <config>
+            <inputStyle>text</inputStyle>
+            <xsdVersion>default</xsdVersion>
+            <validateOutput>false</validateOutput>
+            <term>
+                <xsd:element name="root">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="activity" type="pfx2:activityType" minOccurs="0" maxOccurs="unbounded"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </term>
+        </config>
+        <pd:inputBindings>
+            <xmlString>
+                <xsl:value-of select="$Java-Code/javaCodeActivityOutput/outMe"/>
+            </xmlString>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:transition>
+        <pd:from>Java Code</pd:from>
+        <pd:to>Parse activities</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Parse activities</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Start</pd:from>
+        <pd:to>Java Code</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:label>
+        <pd:name>Label</pd:name>
+        <pd:description>Process that list all activities in a specified process 
+provided as an input. Activity properties are listed like
+activity name, position, input mapping ..etc</pd:description>
+        <pd:x>210</pd:x>
+        <pd:y>157</pd:y>
+        <pd:width>316</pd:width>
+        <pd:height>86</pd:height>
+        <pd:fontColor>-16777216</pd:fontColor>
+        <pd:color>-1</pd:color>
+        <pd:type>solid</pd:type>
+        <pd:thickness>0</pd:thickness>
+        <pd:fade>true</pd:fade>
+    </pd:label>
+</pd:ProcessDefinition>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns:er="http://www.tibco.com/schemas/7amadaawy/process/Schema.xsd"
+	 targetNamespace="http://www.tibco.com/schemas/7amadaawy/process/Schema.xsd"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:element name="root">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="activity" type="er:activityType" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="activityType">
+		<xs:sequence>
+			<xs:element ref="er:name"/>
+			<xs:element ref="er:className"/>
+			<xs:element ref="er:description"/>
+			<xs:element ref="er:inputBinds"/>
+			<xs:element ref="er:outputSlotName"/>
+			<xs:element ref="er:joinToggle"/>
+			<xs:element ref="er:joinCondition"/>
+			<xs:element ref="er:handler"/>
+			<xs:element ref="er:retryLimit"/>
+			<xs:element ref="er:suspendOnError"/>
+			<xs:element ref="er:uri"/>
+			<xs:element ref="er:x"/>
+			<xs:element ref="er:y"/>
+			<xs:element ref="er:resourceType"/>
+			<xs:element ref="er:dataModelClassName"/>
+			<xs:element ref="er:iconImage"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="name" type="xs:string"/>
+	<xs:element name="className" type="xs:string"/>
+	<xs:element name="description" type="xs:string"/>
+	<xs:element name="inputBinds" type="xs:string"/>
+	<xs:element name="outputSlotName" type="xs:string"/>
+	<xs:element name="joinToggle" type="xs:string"/>
+	<xs:element name="joinCondition" type="xs:string"/>
+	<xs:element name="handler" type="xs:string"/>
+	<xs:element name="retryLimit" type="xs:string"/>
+	<xs:element name="suspendOnError" type="xs:string"/>
+	<xs:element name="uri" type="xs:string"/>
+	<xs:element name="x" type="xs:string"/>
+	<xs:element name="y" type="xs:string"/>
+	<xs:element name="resourceType" type="xs:string"/>
+	<xs:element name="dataModelClassName" type="xs:string"/>
+	<xs:element name="iconImage" type="xs:string"/>
+</xs:schema>
