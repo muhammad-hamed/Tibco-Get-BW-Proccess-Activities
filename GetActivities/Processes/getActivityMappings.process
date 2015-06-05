@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pd:ProcessDefinition xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:BW="java://com.tibco.pe.core.JavaCustomXPATHFunctions" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:ns1="http://www.tibco.com/pe/EngineTypes" xmlns:ns="http://www.tibco.com/pe/WriteToLogActivitySchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tib="http://www.tibco.com/bw/xslt/custom-functions" xmlns:pfx3="http://www.tibco.com/schemas/EventReference/EventReference/Resources/Processes/tool/Schema/Schema.xsd" xmlns:pfx2="http://www.tibco.com/schemas/7amadaawy/process/Schema.xsd" xmlns:pfx="com/tibco/pe/commands">
+<pd:ProcessDefinition xmlns:BW="java://com.tibco.pe.core.JavaCustomXPATHFunctions" xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:ns1="http://www.tibco.com/pe/EngineTypes" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:ns="http://www.tibco.com/pe/WriteToLogActivitySchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tib="http://www.tibco.com/bw/xslt/custom-functions" xmlns:pfx3="http://www.tibco.com/schemas/EventReference/EventReference/Resources/Processes/tool/Schema/Schema.xsd" xmlns:pfx2="http://www.tibco.com/schemas/7amadaawy/process/Schema.xsd" xmlns:pfx="com/tibco/pe/commands">
     <xsd:import namespace="http://www.tibco.com/schemas/7amadaawy/process/Schema.xsd" schemaLocation="/Schema/ActivitiesSchema.xsd"/>
     <pd:name>Processes/getActivityMappings.process</pd:name>
     <pd:startName>Start</pd:startName>
@@ -16,7 +16,7 @@
     <pd:startY>55</pd:startY>
     <pd:returnBindings>
         <pfx2:root>
-            <xsl:for-each select="$Parse-activities/root/activity[./*[local-name()='name' and text()!='getActivityMappings'] and ./*[local-name()='className' and text()='com.tibco.pe.core.CallProcessActivity']]">
+            <xsl:for-each select="$Parse-activities/root/activity">
                 <pfx2:activity>
                     <pfx2:name>
                         <xsl:value-of select="./*[local-name()='name']"/>
